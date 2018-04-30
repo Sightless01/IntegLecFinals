@@ -10,7 +10,7 @@
  *
  * @author Lenovo
  */
-import HangmanGame.*;           // The package containing stubs
+import hangman.*;           // The package containing stubs
 import org.omg.CosNaming.*;  // Client_hello will use the naming service
 import org.omg.CosNaming.NamingContextPackage.*;
 import org.omg.CORBA.*;      // All CORBA applications need these classes

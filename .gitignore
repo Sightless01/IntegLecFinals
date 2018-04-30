@@ -1,0 +1,6 @@
+*.class
+/Java Client/hangman
+/Java Client/orb.db
+orb.db
+/Server/hangman
+/Server/orb.db
