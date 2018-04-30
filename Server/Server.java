@@ -25,11 +25,19 @@ public class Server {
    		ncRef.rebind(path, service_href);
 
    		System.out.println("The Server is now running!");
-   		Scanner kbd = new Scanner(System.in);
 
-			while(true) {
-   			kbd.nextLine();
-			}
+		BufferedReader data_reader = new BufferedReader(new InputStreamReader(System.in));
+            String msg_kbd= " ";
+            while (!msg_kbd.equals("quit") && !msg_kbd.equals("QUIT")) {
+                System.out.println("Enter \"quit\" to shutdown the server...");
+                msg_kbd = data_reader.readLine();
+                if(msg_kbd.equals("quit") || msg_kbd.equals("QUIT")) {
+                    System.out.println("Shutdown of server is in progress...");
+                    ncRef.unbind(path);
+                    orb.shutdown(false);
+                    System.out.println("Shutdown was successful...");
+                }
+            }
 
 		} catch(Exception e) {
 			e.printStackTrace();
