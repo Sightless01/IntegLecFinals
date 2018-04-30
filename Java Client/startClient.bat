@@ -1,4 +1,4 @@
 @echo off
 idlj -fclient ../Hangman.idl
-javac *.java
+javac -d . *.java
 java -cp . Client -ORBInitialPort 7000
