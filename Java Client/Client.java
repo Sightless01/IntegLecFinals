@@ -74,6 +74,7 @@ public class Client
 		}
       } while(word.equals("Player Already exists."));
       HangmanUI hangmanUI = new HangmanUI(hangman, name, word);
+      hangmanUI.setLocationRelativeTo(null);
       hangmanUI.setResizable(false);
       hangmanUI.setVisible(true);     
     }catch(Exception e)
