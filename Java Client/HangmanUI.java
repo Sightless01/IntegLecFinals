@@ -10,7 +10,7 @@
  *
  * @author Lenovo
  */
-import hangman.*;           // The package containing stubs
+import HangmanGame.*;           // The package containing stubs
 import org.omg.CosNaming.*;  // Client_hello will use the naming service
 import org.omg.CosNaming.NamingContextPackage.*;
 import org.omg.CORBA.*;      // All CORBA applications need these classes
@@ -35,7 +35,9 @@ public class HangmanUI extends javax.swing.JFrame {
 	private static String image = "";
 	private static int life;
     private static Hangman hangman;
+    private static String message = "";
     String line = "";
+    
 	
 	
     public HangmanUI(Hangman hangman, String name, String word) {
@@ -43,6 +45,7 @@ public class HangmanUI extends javax.swing.JFrame {
         this.hangman=hangman;
         this.name=name;
         this.word=word;
+        this.message="The word is " +word+". Do you want to play again?";
         this.life=hangman.getCurrentLife(name);
         nameField.setText(name);
         for(int i = 0; i < word.length(); i++) {
@@ -51,26 +54,61 @@ public class HangmanUI extends javax.swing.JFrame {
         wordField.setText(line);
     }
     
-    public void updateWord(String replacement){
+    private void updateWord(String replacement){
         wordField.setText(replacement);
     }
     public void setImage(int life){
         if(life==5){
-            this.image="/1.jpg";
+            this.image="/1.png";
         } else if(life==4){
-            this.image="/2.jpg";
+            this.image="/2.png";
         } else if(life==3){
-            this.image="/3.jpg";
+            this.image="/3.png";
         } else if(life==2){
-            this.image="/4.jpg";
+            this.image="/4.png";
         } else if(life==1){
-            this.image="/5.jpg";
+            this.image="/5.png";
         } else if(life==0){
-            this.image="/5.jpg";
+            this.image="/6.png";
         }
     }
-    public void anotherGame(){
-        
+    private void anotherGame(){
+        this.word = hangman.newGame(name);
+        this.line = "";
+        this.life = hangman.getCurrentLife(name);
+        this.message="The word is " +word+". Do you want to play again?";
+        System.out.println(word);
+        for(int i = 0; i < word.length(); i++) {
+          line += "_ ";
+        }
+        wordField.setText(line);
+        aButton.setEnabled(true);
+        cButton.setEnabled(true);
+        bButton.setEnabled(true);
+        dButton.setEnabled(true);
+        eButton.setEnabled(true);
+        fButton.setEnabled(true);
+        gButton.setEnabled(true);
+        hButton.setEnabled(true);
+        iButton.setEnabled(true);
+        jButton.setEnabled(true);
+        kButton.setEnabled(true);
+        lButton.setEnabled(true);
+        nButton.setEnabled(true);
+        mButton.setEnabled(true);
+        oButton.setEnabled(true);
+        pButton.setEnabled(true);
+        qButton.setEnabled(true);
+        rButton.setEnabled(true);
+        sButton.setEnabled(true);
+        tButton.setEnabled(true);
+        uButton.setEnabled(true);
+        vButton.setEnabled(true);
+        wButton.setEnabled(true);
+        xButton.setEnabled(true);
+        yButton.setEnabled(true);
+        zButton.setEnabled(true);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/1.png")));
     }
     
     /**
@@ -339,10 +377,12 @@ public class HangmanUI extends javax.swing.JFrame {
         });
 
 
-        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+         jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jLabel2.setText("Hangman nowee-oppa Special Edition");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/1.jpg"))); // NOI18N
+        jPanel1.setPreferredSize(new java.awt.Dimension(165, 270));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/1.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -350,13 +390,11 @@ public class HangmanUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel3)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 2, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -436,18 +474,18 @@ public class HangmanUI extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(nameField)))
-                        .addGap(18, 18, 18)))
+                        .addGap(34, 34, 34)))
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -488,7 +526,7 @@ public class HangmanUI extends javax.swing.JFrame {
                             .addComponent(yButton)
                             .addComponent(zButton))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -496,7 +534,7 @@ public class HangmanUI extends javax.swing.JFrame {
         jPanel1.getAccessibleContext().setAccessibleDescription("");
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
         // TODO add your handling code here:
@@ -524,12 +562,28 @@ public class HangmanUI extends javax.swing.JFrame {
                 updateWord(line);
               } else {
                 // this erea can be replaced by the GUI where the line or shape can be drown;
-                System.out.println("Wrong!");
+                System.out.println(life);
               }
             this.life=hangman.getCurrentLife(name);
             setImage(life);
             jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(image)));
 			aButton.setEnabled(false);
+            String wordGuess=line.replaceAll("\\s","");    
+        if(wordGuess.equals(word)){
+                this.life=0;
+                this.message="Congrats! Do you want to play again?";
+            }
+            if(life==0){
+                int reply = JOptionPane.showConfirmDialog(null, message, "Game over", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                  anotherGame();
+                }
+                else {
+                   JOptionPane.showMessageDialog(null, "Thanks For playing");
+                   hangman.endGame(name);
+                    System.exit(0);
+                }
+            }
     }//GEN-LAST:event_aButtonActionPerformed
 
     private void bButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bButtonActionPerformed
@@ -554,12 +608,28 @@ public class HangmanUI extends javax.swing.JFrame {
                 updateWord(line);
               } else {
                 // this erea can be replaced by the GUI where the line or shape can be drown;
-                System.out.println("Wrong!");
+                System.out.println(life);
               }
         this.life=hangman.getCurrentLife(name);
         setImage(life);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(image)));        // TODO add your handling code here:
 		bButton.setEnabled(false);
+        String wordGuess=line.replaceAll("\\s","");    
+        if(wordGuess.equals(word)){
+                this.life=0;
+                this.message="Congrats! Do you want to play again?";
+            }
+            if(life==0){
+                int reply = JOptionPane.showConfirmDialog(null, message, "Game over", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                  anotherGame();
+                }
+                else {
+                   JOptionPane.showMessageDialog(null, "Thanks For playing");
+                   hangman.endGame(name);
+                    System.exit(0);
+                }
+            }
     }//GEN-LAST:event_bButtonActionPerformed
 
     private void cButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cButtonActionPerformed
@@ -584,12 +654,28 @@ public class HangmanUI extends javax.swing.JFrame {
                 updateWord(line);
               } else {
                 // this erea can be replaced by the GUI where the line or shape can be drown;
-                System.out.println("Wrong!");
+                System.out.println(life);
               }
         this.life=hangman.getCurrentLife(name);
         setImage(life);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(image)));        // TODO add your handling code here:
 		cButton.setEnabled(false);
+        String wordGuess=line.replaceAll("\\s","");
+        if(wordGuess.equals(word)){
+                this.life=0;
+                this.message="Congrats! Do you want to play again?";
+            }
+            if(life==0){
+                int reply = JOptionPane.showConfirmDialog(null, message, "Game over", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                  anotherGame();
+                }
+                else {
+                   JOptionPane.showMessageDialog(null, "Thanks For playing");
+                   hangman.endGame(name);
+                    System.exit(0);
+                }
+            }
     }//GEN-LAST:event_cButtonActionPerformed
     
     private void dButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cButtonActionPerformed
@@ -614,12 +700,28 @@ public class HangmanUI extends javax.swing.JFrame {
                 updateWord(line);
               } else {
                 // this erea can be replaced by the GUI where the line or shape can be drown;
-                System.out.println("Wrong!");
+                System.out.println(life);
               }
         this.life=hangman.getCurrentLife(name);
         setImage(life);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(image)));        // TODO add your handling code here:
 		dButton.setEnabled(false);
+        String wordGuess=line.replaceAll("\\s","");    
+        if(wordGuess.equals(word)){
+                this.life=0;
+                this.message="Congrats! Do you want to play again?";
+            }
+            if(life==0){
+                int reply = JOptionPane.showConfirmDialog(null, message, "Game over", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                  anotherGame();
+                }
+                else {
+                   JOptionPane.showMessageDialog(null, "Thanks For playing");
+                   hangman.endGame(name);
+                    System.exit(0);
+                }
+            }
     }private void eButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cButtonActionPerformed
          if(hangman.letterGuess(name, 'e')) {
                 String replacement = "";
@@ -642,12 +744,28 @@ public class HangmanUI extends javax.swing.JFrame {
                 updateWord(line);
               } else {
                 // this erea can be replaced by the GUI where the line or shape can be drown;
-                System.out.println("Wrong!");
+                System.out.println(life);
               }
         this.life=hangman.getCurrentLife(name);
         setImage(life);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(image)));        // TODO add your handling code here:
 		eButton.setEnabled(false);
+        String wordGuess=line.replaceAll("\\s","");     
+        if(wordGuess.equals(word)){
+                this.life=0;
+                this.message="Congrats! Do you want to play again?";
+            }
+            if(life==0){
+                int reply = JOptionPane.showConfirmDialog(null, message, "Game over", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                  anotherGame();
+                }
+                else {
+                   JOptionPane.showMessageDialog(null, "Thanks For playing");
+                   hangman.endGame(name);
+                    System.exit(0);
+                }
+            }
     }private void fButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cButtonActionPerformed
          if(hangman.letterGuess(name, 'f')) {
                 String replacement = "";
@@ -670,12 +788,28 @@ public class HangmanUI extends javax.swing.JFrame {
                 updateWord(line);
               } else {
                 // this erea can be replaced by the GUI where the line or shape can be drown;
-                System.out.println("Wrong!");
+                System.out.println(life);
               }
         this.life=hangman.getCurrentLife(name);
         setImage(life);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(image)));        // TODO add your handling code here:
 		fButton.setEnabled(false);
+        String wordGuess=line.replaceAll("\\s","");     
+        if(wordGuess.equals(word)){
+                this.life=0;
+                this.message="Congrats! Do you want to play again?";
+            }
+            if(life==0){
+                int reply = JOptionPane.showConfirmDialog(null, message, "Game over", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                  anotherGame();
+                }
+                else {
+                   JOptionPane.showMessageDialog(null, "Thanks For playing");
+                   hangman.endGame(name);
+                    System.exit(0);
+                }
+            }
     }private void gButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cButtonActionPerformed
          if(hangman.letterGuess(name, 'g')) {
                 String replacement = "";
@@ -698,12 +832,28 @@ public class HangmanUI extends javax.swing.JFrame {
                 updateWord(line);
               } else {
                 // this erea can be replaced by the GUI where the line or shape can be drown;
-                System.out.println("Wrong!");
+                System.out.println(life);
               }
         this.life=hangman.getCurrentLife(name);
         setImage(life);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(image)));        // TODO add your handling code here:
 		gButton.setEnabled(false);
+        String wordGuess=line.replaceAll("\\s","");     
+        if(wordGuess.equals(word)){
+                this.life=0;
+                this.message="Congrats! Do you want to play again?";
+            }
+            if(life==0){
+                int reply = JOptionPane.showConfirmDialog(null, message, "Game over", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                  anotherGame();
+                }
+                else {
+                   JOptionPane.showMessageDialog(null, "Thanks For playing");
+                   hangman.endGame(name);
+                    System.exit(0);
+                }
+            }
     }private void hButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cButtonActionPerformed
          if(hangman.letterGuess(name, 'h')) {
                 String replacement = "";
@@ -726,12 +876,29 @@ public class HangmanUI extends javax.swing.JFrame {
                 updateWord(line);
               } else {
                 // this erea can be replaced by the GUI where the line or shape can be drown;
-                System.out.println("Wrong!");
+                System.out.println(life);
+                    
               }
         this.life=hangman.getCurrentLife(name);
         setImage(life);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(image)));        // TODO add your handling code here:
 		hButton.setEnabled(false);
+        String wordGuess=line.replaceAll("\\s","");     
+        if(wordGuess.equals(word)){
+                this.life=0;
+                this.message="Congrats! Do you want to play again?";
+            }
+            if(life==0){
+                int reply = JOptionPane.showConfirmDialog(null, message, "Game over", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                  anotherGame();
+                }
+                else {
+                   JOptionPane.showMessageDialog(null, "Thanks For playing");
+                   hangman.endGame(name);
+                    System.exit(0);
+                }
+            }
     }private void iButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cButtonActionPerformed
          if(hangman.letterGuess(name, 'i')) {
                 String replacement = "";
@@ -754,12 +921,28 @@ public class HangmanUI extends javax.swing.JFrame {
                 updateWord(line);
               } else {
                 // this erea can be replaced by the GUI where the line or shape can be drown;
-                System.out.println("Wrong!");
+                System.out.println(life);
               }
-        this.life=hangman.getCurrentLife(name);
+        life=hangman.getCurrentLife(name);
         setImage(life);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(image)));        // TODO add your handling code here:
 		iButton.setEnabled(false);
+        String wordGuess=line.replaceAll("\\s","");     
+        if(wordGuess.equals(word)){
+                this.life=0;
+                this.message="Congrats! Do you want to play again?";
+            }
+            if(life==0){
+                int reply = JOptionPane.showConfirmDialog(null, message, "Game over", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                  anotherGame();
+                }
+                else {
+                   JOptionPane.showMessageDialog(null, "Thanks For playing");
+                   hangman.endGame(name);
+                    System.exit(0);
+                }
+            }
     }private void jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cButtonActionPerformed
          if(hangman.letterGuess(name, 'j')) {
                 String replacement = "";
@@ -782,12 +965,28 @@ public class HangmanUI extends javax.swing.JFrame {
                 updateWord(line);
               } else {
                 // this erea can be replaced by the GUI where the line or shape can be drown;
-                System.out.println("Wrong!");
+                System.out.println(life);
               }
         this.life=hangman.getCurrentLife(name);
         setImage(life);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(image)));        // TODO add your handling code here:
 		jButton.setEnabled(false);
+        String wordGuess=line.replaceAll("\\s","");     
+        if(wordGuess.equals(word)){
+                this.life=0;
+                this.message="Congrats! Do you want to play again?";
+            }
+            if(life==0){
+                int reply = JOptionPane.showConfirmDialog(null, message, "Game over", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                  anotherGame();
+                }
+                else {
+                   JOptionPane.showMessageDialog(null, "Thanks For playing");
+                   hangman.endGame(name);
+                    System.exit(0);
+                }
+            }
     }private void kButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cButtonActionPerformed
          if(hangman.letterGuess(name, 'k')) {
                 String replacement = "";
@@ -810,12 +1009,28 @@ public class HangmanUI extends javax.swing.JFrame {
                 updateWord(line);
               } else {
                 // this erea can be replaced by the GUI where the line or shape can be drown;
-                System.out.println("Wrong!");
+                System.out.println(life);
               }
         this.life=hangman.getCurrentLife(name);
         setImage(life);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(image)));        // TODO add your handling code here:
 		kButton.setEnabled(false);
+        String wordGuess=line.replaceAll("\\s","");     
+        if(wordGuess.equals(word)){
+                this.life=0;
+                this.message="Congrats! Do you want to play again?";
+            }
+            if(life==0){
+                int reply = JOptionPane.showConfirmDialog(null, message, "Game over", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                  anotherGame();
+                }
+                else {
+                   JOptionPane.showMessageDialog(null, "Thanks For playing");
+                   hangman.endGame(name);
+                    System.exit(0);
+                }
+            }
     }private void lButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cButtonActionPerformed
          if(hangman.letterGuess(name, 'l')) {
                 String replacement = "";
@@ -838,12 +1053,28 @@ public class HangmanUI extends javax.swing.JFrame {
                 updateWord(line);
               } else {
                 // this erea can be replaced by the GUI where the line or shape can be drown;
-                System.out.println("Wrong!");
+                System.out.println(life);
               }
         this.life=hangman.getCurrentLife(name);
         setImage(life);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(image)));        // TODO add your handling code here:
 		lButton.setEnabled(false);
+        String wordGuess=line.replaceAll("\\s","");     
+        if(wordGuess.equals(word)){
+                this.life=0;
+                this.message="Congrats! Do you want to play again?";
+            }
+            if(life==0){
+                int reply = JOptionPane.showConfirmDialog(null, message, "Game over", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                  anotherGame();
+                }
+                else {
+                   JOptionPane.showMessageDialog(null, "Thanks For playing");
+                   hangman.endGame(name);
+                    System.exit(0);
+                }
+            }
     }private void mButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cButtonActionPerformed
          if(hangman.letterGuess(name, 'm')) {
                 String replacement = "";
@@ -866,12 +1097,28 @@ public class HangmanUI extends javax.swing.JFrame {
                 updateWord(line);
               } else {
                 // this erea can be replaced by the GUI where the line or shape can be drown;
-                System.out.println("Wrong!");
+                System.out.println(life);
               }
         this.life=hangman.getCurrentLife(name);
         setImage(life);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(image)));        // TODO add your handling code here:
 		mButton.setEnabled(false);
+        String wordGuess=line.replaceAll("\\s","");     
+        if(wordGuess.equals(word)){
+                this.life=0;
+                this.message="Congrats! Do you want to play again?";
+            }
+            if(life==0){
+                int reply = JOptionPane.showConfirmDialog(null, message, "Game over", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                  anotherGame();
+                }
+                else {
+                   JOptionPane.showMessageDialog(null, "Thanks For playing");
+                   hangman.endGame(name);
+                    System.exit(0);
+                }
+            }
     }private void nButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cButtonActionPerformed
          if(hangman.letterGuess(name, 'n')) {
                 String replacement = "";
@@ -894,12 +1141,28 @@ public class HangmanUI extends javax.swing.JFrame {
                 updateWord(line);
               } else {
                 // this erea can be replaced by the GUI where the line or shape can be drown;
-                System.out.println("Wrong!");
+                System.out.println(life);
               }
         this.life=hangman.getCurrentLife(name);
         setImage(life);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(image)));        // TODO add your handling code here:
 		nButton.setEnabled(false);
+        String wordGuess=line.replaceAll("\\s","");     
+        if(wordGuess.equals(word)){
+                this.life=0;
+                this.message="Congrats! Do you want to play again?";
+            }
+            if(life==0){
+                int reply = JOptionPane.showConfirmDialog(null, message, "Game over", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                  anotherGame();
+                }
+                else {
+                   JOptionPane.showMessageDialog(null, "Thanks For playing");
+                   hangman.endGame(name);
+                    System.exit(0);
+                }
+            }
     }private void oButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cButtonActionPerformed
          if(hangman.letterGuess(name, 'o')) {
                 String replacement = "";
@@ -922,12 +1185,28 @@ public class HangmanUI extends javax.swing.JFrame {
                 updateWord(line);
               } else {
                 // this erea can be replaced by the GUI where the line or shape can be drown;
-                System.out.println("Wrong!");
+                System.out.println(life);
               }
         this.life=hangman.getCurrentLife(name);
         setImage(life);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(image)));        // TODO add your handling code here:
 		oButton.setEnabled(false);
+        String wordGuess=line.replaceAll("\\s","");     
+        if(wordGuess.equals(word)){
+                this.life=0;
+                this.message="Congrats! Do you want to play again?";
+            }
+            if(life==0){
+                int reply = JOptionPane.showConfirmDialog(null, message, "Game over", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                  anotherGame();
+                }
+                else {
+                   JOptionPane.showMessageDialog(null, "Thanks For playing");
+                   hangman.endGame(name);
+                    System.exit(0);
+                }
+            }
     }private void pButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cButtonActionPerformed
          if(hangman.letterGuess(name, 'p')) {
                 String replacement = "";
@@ -950,12 +1229,28 @@ public class HangmanUI extends javax.swing.JFrame {
                 updateWord(line);
               } else {
                 // this erea can be replaced by the GUI where the line or shape can be drown;
-                System.out.println("Wrong!");
+                System.out.println(life);
               }
         this.life=hangman.getCurrentLife(name);
         setImage(life);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(image)));        // TODO add your handling code here:
 		pButton.setEnabled(false);
+        String wordGuess=line.replaceAll("\\s","");     
+        if(wordGuess.equals(word)){
+                this.life=0;
+                this.message="Congrats! Do you want to play again?";
+            }
+            if(life==0){
+                int reply = JOptionPane.showConfirmDialog(null, message, "Game over", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                  anotherGame();
+                }
+                else {
+                   JOptionPane.showMessageDialog(null, "Thanks For playing");
+                   hangman.endGame(name);
+                    System.exit(0);
+                }
+            }
     }private void qButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cButtonActionPerformed
          if(hangman.letterGuess(name, 'q')) {
                 String replacement = "";
@@ -978,12 +1273,28 @@ public class HangmanUI extends javax.swing.JFrame {
                 updateWord(line);
               } else {
                 // this erea can be replaced by the GUI where the line or shape can be drown;
-                System.out.println("Wrong!");
+                System.out.println(life);
               }
         this.life=hangman.getCurrentLife(name);
         setImage(life);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(image)));        // TODO add your handling code here:
 		qButton.setEnabled(false);
+        String wordGuess=line.replaceAll("\\s","");     
+        if(wordGuess.equals(word)){
+                this.life=0;
+                this.message="Congrats! Do you want to play again?";
+            }
+            if(life==0){
+                int reply = JOptionPane.showConfirmDialog(null, message, "Game over", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                  anotherGame();
+                }
+                else {
+                   JOptionPane.showMessageDialog(null, "Thanks For playing");
+                   hangman.endGame(name);
+                    System.exit(0);
+                }
+            }
     }private void rButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cButtonActionPerformed
          if(hangman.letterGuess(name, 'r')) {
                 String replacement = "";
@@ -1006,12 +1317,28 @@ public class HangmanUI extends javax.swing.JFrame {
                 updateWord(line);
               } else {
                 // this erea can be replaced by the GUI where the line or shape can be drown;
-                System.out.println("Wrong!");
+                System.out.println(life);
               }
         this.life=hangman.getCurrentLife(name);
         setImage(life);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(image)));        // TODO add your handling code here:
 		rButton.setEnabled(false);
+        String wordGuess=line.replaceAll("\\s","");     
+        if(wordGuess.equals(word)){
+                this.life=0;
+                this.message="Congrats! Do you want to play again?";
+            }
+            if(life==0){
+                int reply = JOptionPane.showConfirmDialog(null, message, "Game over", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                  anotherGame();
+                }
+                else {
+                   JOptionPane.showMessageDialog(null, "Thanks For playing");
+                   hangman.endGame(name);
+                    System.exit(0);
+                }
+            }
     }private void sButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cButtonActionPerformed
          if(hangman.letterGuess(name, 's')) {
                 String replacement = "";
@@ -1034,12 +1361,28 @@ public class HangmanUI extends javax.swing.JFrame {
                 updateWord(line);
               } else {
                 // this erea can be replaced by the GUI where the line or shape can be drown;
-                System.out.println("Wrong!");
+                System.out.println(life);
               }
         this.life=hangman.getCurrentLife(name);
         setImage(life);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(image)));        // TODO add your handling code here:
 		sButton.setEnabled(false);
+        String wordGuess=line.replaceAll("\\s","");     
+        if(wordGuess.equals(word)){
+                this.life=0;
+                this.message="Congrats! Do you want to play again?";
+            }
+            if(life==0){
+                int reply = JOptionPane.showConfirmDialog(null, message, "Game over", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                  anotherGame();
+                }
+                else {
+                   JOptionPane.showMessageDialog(null, "Thanks For playing");
+                   hangman.endGame(name);
+                    System.exit(0);
+                }
+            }
     }private void tButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cButtonActionPerformed
          if(hangman.letterGuess(name, 't')) {
                 String replacement = "";
@@ -1062,12 +1405,28 @@ public class HangmanUI extends javax.swing.JFrame {
                 updateWord(line);
               } else {
                 // this erea can be replaced by the GUI where the line or shape can be drown;
-                System.out.println("Wrong!");
+                System.out.println(life);
               }
         this.life=hangman.getCurrentLife(name);
         setImage(life);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(image)));        // TODO add your handling code here:
 		tButton.setEnabled(false);
+        String wordGuess=line.replaceAll("\\s","");     
+        if(wordGuess.equals(word)){
+                this.life=0;
+                this.message="Congrats! Do you want to play again?";
+            }
+            if(life==0){
+                int reply = JOptionPane.showConfirmDialog(null, message, "Game over", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                  anotherGame();
+                }
+                else {
+                   JOptionPane.showMessageDialog(null, "Thanks For playing");
+                   hangman.endGame(name);
+                    System.exit(0);
+                }
+            }
     }private void uButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cButtonActionPerformed
          if(hangman.letterGuess(name, 'u')) {
                 String replacement = "";
@@ -1090,10 +1449,28 @@ public class HangmanUI extends javax.swing.JFrame {
                 updateWord(line);
               } else {
                 // this erea can be replaced by the GUI where the line or shape can be drown;
-                System.out.println("Wrong!");
+                System.out.println(life);
               }
+        this.life=hangman.getCurrentLife(name);
+        setImage(life);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(image)));        // TODO add your handling code here:
 		uButton.setEnabled(false);
+        String wordGuess=line.replaceAll("\\s","");     
+        if(wordGuess.equals(word)){
+                this.life=0;
+                this.message="Congrats! Do you want to play again?";
+            }
+            if(life==0){
+                int reply = JOptionPane.showConfirmDialog(null, message, "Game over", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                  anotherGame();
+                }
+                else {
+                   JOptionPane.showMessageDialog(null, "Thanks For playing");
+                   hangman.endGame(name);
+                    System.exit(0);
+                }
+            }
     }private void vButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cButtonActionPerformed
          if(hangman.letterGuess(name, 'v')) {
                 String replacement = "";
@@ -1116,12 +1493,28 @@ public class HangmanUI extends javax.swing.JFrame {
                 updateWord(line);
               } else {
                 // this erea can be replaced by the GUI where the line or shape can be drown;
-                System.out.println("Wrong!");
+                System.out.println(life);
               }
         this.life=hangman.getCurrentLife(name);
         setImage(life);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(image)));        // TODO add your handling code here:
 		vButton.setEnabled(false);
+        String wordGuess=line.replaceAll("\\s","");     
+        if(wordGuess.equals(word)){
+                this.life=0;
+                this.message="Congrats! Do you want to play again?";
+            }
+            if(life==0){
+                int reply = JOptionPane.showConfirmDialog(null, message, "Game over", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                  anotherGame();
+                }
+                else {
+                   JOptionPane.showMessageDialog(null, "Thanks For playing");
+                   hangman.endGame(name);
+                    System.exit(0);
+                }
+            }
     }private void wButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cButtonActionPerformed
          if(hangman.letterGuess(name, 'w')) {
                 String replacement = "";
@@ -1144,12 +1537,28 @@ public class HangmanUI extends javax.swing.JFrame {
                 updateWord(line);
               } else {
                 // this erea can be replaced by the GUI where the line or shape can be drown;
-                System.out.println("Wrong!");
+                System.out.println(life);
               }
         this.life=hangman.getCurrentLife(name);
         setImage(life);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(image)));        // TODO add your handling code here:
 		wButton.setEnabled(false);
+        String wordGuess=line.replaceAll("\\s","");     
+        if(wordGuess.equals(word)){
+                this.life=0;
+                this.message="Congrats! Do you want to play again?";
+            }
+            if(life==0){
+                int reply = JOptionPane.showConfirmDialog(null, message, "Game over", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                  anotherGame();
+                }
+                else {
+                   JOptionPane.showMessageDialog(null, "Thanks For playing");
+                   hangman.endGame(name);
+                    System.exit(0);
+                }
+            }
     }private void xButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cButtonActionPerformed
          if(hangman.letterGuess(name, 'x')) {
                 String replacement = "";
@@ -1172,12 +1581,28 @@ public class HangmanUI extends javax.swing.JFrame {
                 updateWord(line);
               } else {
                 // this erea can be replaced by the GUI where the line or shape can be drown;
-                System.out.println("Wrong!");
+                System.out.println(life);
               }
         this.life=hangman.getCurrentLife(name);
         setImage(life);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(image)));        // TODO add your handling code here:
 		xButton.setEnabled(false);
+        String wordGuess=line.replaceAll("\\s","");     
+        if(wordGuess.equals(word)){
+                this.life=0;
+                this.message="Congrats! Do you want to play again?";
+            }
+            if(life==0){
+                int reply = JOptionPane.showConfirmDialog(null, message, "Game over", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                  anotherGame();
+                }
+                else {
+                   JOptionPane.showMessageDialog(null, "Thanks For playing");
+                   hangman.endGame(name);
+                    System.exit(0);
+                }
+            }
     }private void yButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cButtonActionPerformed
          if(hangman.letterGuess(name, 'y')) {
                 String replacement = "";
@@ -1200,12 +1625,28 @@ public class HangmanUI extends javax.swing.JFrame {
                 updateWord(line);
               } else {
                 // this erea can be replaced by the GUI where the line or shape can be drown;
-                System.out.println("Wrong!");
+                System.out.println(life);
               }
         this.life=hangman.getCurrentLife(name);
         setImage(life);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(image)));        // TODO add your handling code here:
 		yButton.setEnabled(false);
+        String wordGuess=line.replaceAll("\\s","");     
+        if(wordGuess.equals(word)){
+                this.life=0;
+                this.message="Congrats! Do you want to play again?";
+            }
+            if(life==0){
+                int reply = JOptionPane.showConfirmDialog(null, message, "Game over", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                  anotherGame();
+                }
+                else {
+                   JOptionPane.showMessageDialog(null, "Thanks For playing");
+                   hangman.endGame(name);
+                    System.exit(0);
+                }
+            }
     }private void zButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cButtonActionPerformed
          if(hangman.letterGuess(name, 'z')) {
                 String replacement = "";
@@ -1228,12 +1669,28 @@ public class HangmanUI extends javax.swing.JFrame {
                 updateWord(line);
               } else {
                 // this erea can be replaced by the GUI where the line or shape can be drown;
-                System.out.println("Wrong!");
+                System.out.println(life);
               }
         this.life=hangman.getCurrentLife(name);
         setImage(life);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(image)));        // TODO add your handling code here:
 		zButton.setEnabled(false);
+        String wordGuess=line.replaceAll("\\s","");     
+        if(wordGuess.equals(word)){
+                this.life=0;
+                this.message="Congrats! Do you want to play again?";
+            }
+            if(life==0){
+                int reply = JOptionPane.showConfirmDialog(null, message, "Game over", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                  anotherGame();
+                }
+                else {
+                   JOptionPane.showMessageDialog(null, "Thanks For playing");
+                   hangman.endGame(name);
+                    System.exit(0);
+                }
+            }
     }
 
     /**
